@@ -6,7 +6,7 @@ authors = ["artem <deusestmaleficus@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.11"
 pytest = "^7.4.2"
 requests = "^2.31.0"
 
