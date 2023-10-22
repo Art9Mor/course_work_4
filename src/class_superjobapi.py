@@ -8,6 +8,9 @@ from src.class_vacancies import Vacancies
 
 
 class SuperJobAPI(API):
+    """
+    Obtaining information from the API of the superjob.ru website
+    """
     __SJ_API_URL = 'https://api.superjob.ru/2.0/vacancies/'
     __SJ_API_KEY = os.getenv('SECRET_KEY')
 
@@ -21,6 +24,9 @@ class SuperJobAPI(API):
         self.param = copy.deepcopy(self.param_default)
 
     def get_vacancies(self):
+        """
+        Receiving information via API about vacancies
+        """
 
         headers = {'X-Api-App-Id': self.__SJ_API_KEY}
 
@@ -30,7 +36,20 @@ class SuperJobAPI(API):
         else:
             return None
 
+    def add_profession(self, value: str) -> None:
+        """
+        Adding the 'keyword' parameter to param
+        :param value: string
+        """
+        self.param['keyword'] = value
+        Vacancies.request_text = value
+
     def formated_data(self, data: list) -> list:
+        """
+        Data formatting
+        :param data: list
+        :return: list
+        """
 
         work_data = []
         for item in data:
@@ -50,7 +69,3 @@ class SuperJobAPI(API):
                          }
             work_data.append(work_dict)
         return work_data
-
-    def add_profession(self, value: str) -> None:
-        self.param['keyword'] = value
-        Vacancies.request_text = value
