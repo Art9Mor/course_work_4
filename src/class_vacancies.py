@@ -1,12 +1,12 @@
 class Vacancies:
     """
-    Class for working with vacancies
+    Сlass for processing vacancies
     """
 
     all_vacancies = []
     request_string = ''
 
-    def __init__(self, vacancy_data) -> None:
+    def __init__(self, vacancy_data: dict):
         self.name = vacancy_data['name']
         self.requirement = vacancy_data['requirement']
         self.responsibility = vacancy_data['responsibility']
@@ -15,7 +15,12 @@ class Vacancies:
         self.url = vacancy_data['url']
         self.employer = vacancy_data['employer']
 
+        Vacancies.all_vacancies.append(self)
+
     def get_info(self) -> None:
+        """
+        Displaying information about a class instance
+        """
         print('-' * 50)
         print(f'Employer: {self.employer[:100]}')
         print(f'Profession: {self.name}')
@@ -32,15 +37,21 @@ class Vacancies:
         print('-' * 50)
         print()
 
-    def __len__(self) -> int:
+    def __len__(self):
         return len(Vacancies.all_vacancies)
 
     @classmethod
     def clear_vacancies_list(cls) -> None:
+        """
+        Clearing class attribute 'all_vacancies'
+        """
         cls.all_vacancies = []
 
     @classmethod
     def reformat_data(cls) -> list:
+        """
+        Creating a list of dicts from 'all_vacancies'
+        """
         reformat_data = []
         for vacancy in cls.all_vacancies:
             reformat_data.append(vacancy.__dict__)
