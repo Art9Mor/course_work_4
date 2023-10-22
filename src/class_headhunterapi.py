@@ -7,6 +7,9 @@ from src.class_vacancies import Vacancies
 
 
 class HeadHunterAPI(API):
+    """
+    Obtaining information from the API of the headhunter.ru website
+    """
 
     __HH_API_URL = 'https://api.hh.ru/vacancies'
 
@@ -21,6 +24,9 @@ class HeadHunterAPI(API):
         self.param = copy.deepcopy(self.param_default)
 
     def get_vacancies(self):
+        """
+        Receiving information via API about vacancies
+        """
         response = requests.get(self.__HH_API_URL, params=self.param)
         if response.status_code == 200:
             return response.json()['items']
@@ -28,10 +34,19 @@ class HeadHunterAPI(API):
             return None
 
     def add_profession(self, value: str) -> None:
+        """
+        Adding the 'text' parameter to param
+        :param value: string
+        """
         self.param['text'] = value
         Vacancies.request_text = value
 
     def formated_data(self, data: list) -> list:
+        """
+        Data formatting
+        :param data: list
+        :return: list
+        """
         work_data = []
         for item in data:
             match item['salary']['currency']:

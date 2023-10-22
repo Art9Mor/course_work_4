@@ -5,12 +5,17 @@ from src.class_vacancies import Vacancies
 
 
 class ForUser:
-
+    """
+    User Interaction Class
+    """
     def __init__(self):
         self.hh_api = HeadHunterAPI()
         self.sj_api = SuperJobAPI()
 
     def start_loop(self) -> None:
+        """
+        Start menu
+        """
         while True:
             print('-' * 50)
             print('Greetings! This application will help you find a job.')
@@ -38,6 +43,10 @@ class ForUser:
                     print('Unknown command.')
 
     def choice_profession(self, value: str) -> None:
+        """
+        Request a profession from the user
+        :param value: string with rofession
+        """
         while True:
             print('Command menu:')
             print('0. Exit.')
@@ -58,6 +67,9 @@ class ForUser:
                         self.average_loop(value)
 
     def average_loop(self, value: str) -> None:
+        """
+        Output processing average menu for vacancies
+        """
         while True:
             print('-' * 50)
             print('Command menu:')
@@ -115,6 +127,9 @@ class ForUser:
                     print('Unknown command.')
 
     def get_all_vacancies(self, data):
+        """
+        Output of all found vacancies
+        """
         for part in data:
             Vacancies(part)
         work_list = Vacancies.all_vacancies
@@ -124,6 +139,9 @@ class ForUser:
         self.last_loop(work_list)
 
     def get_top_10_by_salary(self, data):
+        """
+        Display of the first 10 vacancies by salary
+        """
         for part in data[:10]:
             Vacancies(part)
         work_list = Vacancies.all_vacancies
@@ -133,6 +151,9 @@ class ForUser:
         self.last_loop(work_list)
 
     def last_loop(self, data):
+        """
+        The last command menu
+        """
         while True:
             print('-' * 50)
             print(f'{len(data)} vacancies shown upon request "{Vacancies.request_string.title()}".')
