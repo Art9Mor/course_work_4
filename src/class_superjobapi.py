@@ -46,8 +46,7 @@ class SuperJobAPI(API):
                          'salary': salary,
                          'salary_currency': 'руб',
                          'url': item['link'],
-                         'employer': item['firm_name'],
-                         # 'date_published': date_published,
+                         'employer': item['firm_name']
                          }
             work_data.append(work_dict)
         return work_data
